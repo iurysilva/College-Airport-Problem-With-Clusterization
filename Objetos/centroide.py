@@ -1,7 +1,6 @@
 import numpy as np
-from bancodedados import BancoDeDados as bd
 
-class Centroide(object):
+class Centroide:
     def __init__(self, nome):
         self.nome = nome
         self.posicao = [0,0]
