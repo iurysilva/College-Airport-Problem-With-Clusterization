@@ -1,7 +1,7 @@
 from Objetos import Kmeans, Centroide, BancoDeDados
 import matplotlib.pyplot as plt
 
-teste = Kmeans(3)
+teste = Kmeans(4)
 teste.centroides.append(Centroide(teste.numero_centroides))
 banco = BancoDeDados()
 
@@ -13,6 +13,9 @@ y1 = []
 
 x2 = []
 y2 = []
+
+x3 = []
+y3 = []
 
 xcentroide = []
 ycentroide = []
@@ -40,8 +43,8 @@ for bairro in banco.bairros:
         x2.append(banco.bairros[bairro]['coordenadas'][0])
         y2.append(banco.bairros[bairro]['coordenadas'][1])
     elif banco.bairros[bairro]['centroide'] == 3:
-        x2.append(banco.bairros[bairro]['coordenadas'][0])
-        y2.append(banco.bairros[bairro]['coordenadas'][1])
+        x3.append(banco.bairros[bairro]['coordenadas'][0])
+        y3.append(banco.bairros[bairro]['coordenadas'][1])
 
-plt.plot(xcentroide[0], ycentroide[0], 'go', xcentroide[1], ycentroide[1], 'bo', xcentroide[2], ycentroide[2], 'yo', x0, y0,'g^', x1, y1, 'b^',x2, y2, 'y^')
+plt.plot(xcentroide[0], ycentroide[0], 'go', xcentroide[1], ycentroide[1], 'bo', xcentroide[2], ycentroide[2], 'yo', xcentroide[3], ycentroide[3], 'ro', x0, y0,'g^', x1, y1, 'b^',x2, y2, 'y^', x3, y3, 'r^')
 plt.show()

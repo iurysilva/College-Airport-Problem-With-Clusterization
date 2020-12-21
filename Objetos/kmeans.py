@@ -17,18 +17,10 @@ class Kmeans:
                     menor_distancia = distancia_atual
                     bd.bairros[bairro]['centroide'] = centroide.nome
 
-            if bd.bairros[bairro]['centroide'] == 0:
-                self.centroides[0].bairros.append(bairro)
-                self.centroides[0].num_bairros += 1
-            elif bd.bairros[bairro]['centroide'] == 1:
-                self.centroides[1].bairros.append(bairro)
-                self.centroides[1].num_bairros += 1
-            elif bd.bairros[bairro]['centroide'] == 2:
-                self.centroides[2].bairros.append(bairro)
-                self.centroides[2].num_bairros += 1
-            elif bd.bairros[bairro]['centroide'] == 3:
-                self.centroides[3].bairros.append(bairro)
-                self.centroides[3].num_bairros += 1
+            for centroide in range (self.numero_centroides):
+                if bd.bairros[bairro]['centroide'] == centroide:
+                    self.centroides[centroide].bairros.append(bairro)
+                    self.centroides[centroide].num_bairros += 1
 
     def move_centroides(self, bd):
         for centroide in range(self.numero_centroides):
