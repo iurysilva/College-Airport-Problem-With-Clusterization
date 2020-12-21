@@ -1,6 +1,7 @@
 class BancoDeDados(object):
     def __init__(self):
         self.numero_bairros = 40
+        self.dimensoes = 2
         # DABEL, DAENT, DAGUA, DABEN, DASAC
         self.bairros = {
             'Batista Campos' : {'coordenadas':(-1.4605943431379507, -48.489817446635655), 'centroide': None},

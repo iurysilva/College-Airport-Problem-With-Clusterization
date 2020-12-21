@@ -5,6 +5,10 @@ class Centroide:
         self.nome = nome
         self.posicao = [0,0]
         self.bairros = []
+        self.num_bairros = 0
+
+    def __repr__(self):
+        return '%d' %self.nome
 
     def gera_posicao_aleatoria(self, bd):
         posicao_aleatoria = np.random.randint(0, bd.numero_bairros)

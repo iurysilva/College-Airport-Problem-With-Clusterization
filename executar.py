@@ -2,6 +2,7 @@ from Objetos import Kmeans, Centroide, BancoDeDados
 import matplotlib.pyplot as plt
 
 teste = Kmeans(3)
+teste.centroides.append(Centroide(teste.numero_centroides))
 banco = BancoDeDados()
 
 x0 = []
@@ -17,15 +18,16 @@ xcentroide = []
 ycentroide = []
 bairros = list(banco.bairros)
 
-for i in range (3):
+for i in range(4):
     teste.centroides[i].gera_posicao_aleatoria(banco)
     xcentroide.append(teste.centroides[i].posicao[0])
     ycentroide.append(teste.centroides[i].posicao[1])
 
-teste.clusterizacao(banco)
+teste.classifica_amostras(banco)
 print(teste.centroides[0].bairros)
 print(teste.centroides[1].bairros)
 print(teste.centroides[2].bairros)
+print(teste.centroides[3].bairros)
 
 for bairro in banco.bairros:
     if banco.bairros[bairro]['centroide'] == 0:
@@ -35,6 +37,9 @@ for bairro in banco.bairros:
         x1.append(banco.bairros[bairro]['coordenadas'][0])
         y1.append(banco.bairros[bairro]['coordenadas'][1])
     elif banco.bairros[bairro]['centroide'] == 2:
+        x2.append(banco.bairros[bairro]['coordenadas'][0])
+        y2.append(banco.bairros[bairro]['coordenadas'][1])
+    elif banco.bairros[bairro]['centroide'] == 3:
         x2.append(banco.bairros[bairro]['coordenadas'][0])
         y2.append(banco.bairros[bairro]['coordenadas'][1])
 
