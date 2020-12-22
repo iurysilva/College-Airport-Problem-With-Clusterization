@@ -46,8 +46,9 @@ def animacao_2d(frame):
     plt.title('iteracoes faltando: %d' % (kmeans.iteracoes + 1))
     kmeans.move_centroides()
     if kmeans.iteracoes == -1 or not kmeans.houve_movimentacao:
+        kmeans.calcula_distancia_total()
+        print(kmeans.distancia_total)
         anim.event_source.stop()
-    kmeans.houve_movimentacao = False
 
 
 def rodar_animacao_2d(kmeans2, velocidade_animacao):
@@ -57,3 +58,4 @@ def rodar_animacao_2d(kmeans2, velocidade_animacao):
     print("Initializing with 2D animation")
     anim = FuncAnimation(plt.gcf(), animacao_2d, interval=velocidade_animacao, repeat=False)
     plt.show()
+

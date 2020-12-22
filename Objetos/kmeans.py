@@ -12,6 +12,7 @@ class Kmeans:
         self.centroides = [Centroide(i) for i in range(numero_centroides)]
         self.banco = banco
         self.iteracoes = iteracoes
+        self.iteracoes_feitas = 0
         self.houve_movimentacao = False
         self.movimento_minimo = movimento_minimo
         self.distancia_total = 0
@@ -44,6 +45,7 @@ class Kmeans:
                     self.centroides[centroide].num_bairros += 1
 
     def move_centroides(self):
+        self.houve_movimentacao = False
         for centroide in range(self.numero_centroides):
             if not self.centroides[centroide].fixo:
                 nova_posicao = np.zeros(self.banco.dimensoes)
