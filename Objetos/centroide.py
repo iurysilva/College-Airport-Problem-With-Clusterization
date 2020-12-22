@@ -11,8 +11,7 @@ class Centroide:
     def __repr__(self):
         return '%d' %self.fixo
 
-    def gera_posicao_aleatoria(self, bd):
-        posicao_aleatoria = np.random.randint(0, bd.numero_bairros)
+    def gera_posicao_aleatoria(self, bd, posicao_aleatoria):
         bairros = list(bd.bairros)
         posicao_centroide = bd.bairros[bairros[posicao_aleatoria]]['coordenadas']
         self.posicao = list(posicao_centroide)

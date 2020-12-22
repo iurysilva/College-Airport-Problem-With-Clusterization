@@ -44,9 +44,10 @@ def animacao_2d(frame):
     plot2d = plt.plot(xcentroide[0], ycentroide[0], 'go', xcentroide[1], ycentroide[1], 'bo', xcentroide[2], ycentroide[2], 'yo', xcentroide[3], ycentroide[3], 'ro', x0, y0, 'g^', x1, y1, 'b^', x2, y2, 'y^', x3, y3, 'r^')
     kmeans.iteracoes -= 1
     plt.title('iteracoes faltando: %d' % (kmeans.iteracoes + 1))
-    if kmeans.iteracoes == -1:
-        anim.event_source.stop()
     kmeans.move_centroides()
+    if kmeans.iteracoes == -1 or not kmeans.houve_movimentacao:
+        anim.event_source.stop()
+    kmeans.houve_movimentacao = False
 
 
 def rodar_animacao_2d(kmeans2, velocidade_animacao):

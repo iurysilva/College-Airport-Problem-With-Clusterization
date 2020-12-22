@@ -3,22 +3,26 @@ import sys
 from Objetos.centroide import Centroide
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 
 class Kmeans:
-    def __init__(self, numero_centroides, iteracoes, banco):
+    def __init__(self, numero_centroides, iteracoes, movimento_minimo, banco):
         self.numero_centroides = numero_centroides
         self.centroides = [Centroide(i) for i in range(numero_centroides)]
         self.banco = banco
         self.iteracoes = iteracoes
+        self.houve_movimentacao = False
+        self.movimento_minimo = movimento_minimo
 
     def gera_posicoes_aleatorias(self):
-        for i in range(4):
-            if i == 3:
-                self.centroides[i].posicao = [-1.3820529975920155, -48.477489181332565]
-                self.centroides[i].fixo = True
+        posicoes_escolhidas = random.sample(range(self.banco.numero_bairros), self.numero_centroides)
+        for centroide in range(self.numero_centroides):
+            if centroide == 3:
+                self.centroides[centroide].posicao = [-1.3820529975920155, -48.477489181332565]
+                self.centroides[centroide].fixo = True
             else:
-                self.centroides[i].gera_posicao_aleatoria(self.banco)
+                self.centroides[centroide].gera_posicao_aleatoria(self.banco, posicoes_escolhidas[centroide])
 
     def classifica_amostras(self):
         for bairro in self.banco.bairros:
@@ -43,6 +47,9 @@ class Kmeans:
                     for componente in range(self.banco.dimensoes):
                         nova_posicao[componente] += self.banco.bairros[bairro]['coordenadas'][componente]
                 for componente in range(self.banco.dimensoes):
+                    movimentacao = np.copy(nova_posicao[componente]/numero_bairros) - self.centroides[centroide].posicao[componente]
+                    if np.abs(movimentacao) > self.movimento_minimo:
+                        self.houve_movimentacao = True
                     self.centroides[centroide].posicao[componente] = np.copy(nova_posicao[componente]/numero_bairros)
 
     def plotar_mapa(self):
