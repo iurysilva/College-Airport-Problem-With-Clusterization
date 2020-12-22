@@ -1,0 +1,1 @@
+from Animacoes.animacao_2d import rodar_animacao_2d

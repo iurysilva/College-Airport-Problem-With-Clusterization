@@ -6,10 +6,11 @@ import matplotlib.pyplot as plt
 
 
 class Kmeans:
-    def __init__(self, numero_centroides, banco):
+    def __init__(self, numero_centroides, iteracoes, banco):
         self.numero_centroides = numero_centroides
         self.centroides = [Centroide(i) for i in range(numero_centroides)]
         self.banco = banco
+        self.iteracoes = iteracoes
 
     def gera_posicoes_aleatorias(self):
         for i in range(4):
@@ -44,7 +45,7 @@ class Kmeans:
                 for componente in range(self.banco.dimensoes):
                     self.centroides[centroide].posicao[componente] = np.copy(nova_posicao[componente]/numero_bairros)
 
-    def plota_mapa(self):
+    def plotar_mapa(self):
         x0 = []
         y0 = []
         x1 = []
