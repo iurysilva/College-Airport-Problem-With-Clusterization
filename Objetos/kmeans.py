@@ -14,6 +14,7 @@ class Kmeans:
         self.iteracoes = iteracoes
         self.houve_movimentacao = False
         self.movimento_minimo = movimento_minimo
+        self.distancia_total = 0
 
     def gera_posicoes_aleatorias(self):
         posicoes_escolhidas = random.sample(range(self.banco.numero_bairros), self.numero_centroides)
@@ -25,6 +26,10 @@ class Kmeans:
                 self.centroides[centroide].gera_posicao_aleatoria(self.banco, posicoes_escolhidas[centroide])
 
     def classifica_amostras(self):
+        for centroide in range(self.numero_centroides):
+            self.centroides[centroide].bairros = []
+            self.centroides[centroide].num_bairros = 0
+
         for bairro in self.banco.bairros:
             menor_distancia = sys.maxsize
             for centroide in self.centroides:
@@ -51,6 +56,10 @@ class Kmeans:
                     if np.abs(movimentacao) > self.movimento_minimo:
                         self.houve_movimentacao = True
                     self.centroides[centroide].posicao[componente] = np.copy(nova_posicao[componente]/numero_bairros)
+
+    def calcula_distancia_total(self):
+        for bairro in self.banco.bairros:
+            self.distancia_total += math.sqrt((self.banco.bairros[bairro]['coordenadas'][0] - self.centroides[self.banco.bairros[bairro]['centroide']].posicao[0]) ** 2 + (self.banco.bairros[bairro]['coordenadas'][1] - self.centroides[self.banco.bairros[bairro]['centroide']].posicao[1]) ** 2)
 
     def plotar_mapa(self):
         x0 = []
@@ -85,3 +94,4 @@ class Kmeans:
         plt.plot(xcentroide[0], ycentroide[0], 'go', xcentroide[1], ycentroide[1], 'bo', xcentroide[2], ycentroide[2],
                  'yo', xcentroide[3], ycentroide[3], 'ro', x0, y0, 'g^', x1, y1, 'b^', x2, y2, 'y^', x3, y3, 'r^')
         plt.show()
+

@@ -11,3 +11,10 @@ kmeans = Kmeans(clusters, iteracoes, movimento_minimo, banco)
 kmeans.gera_posicoes_aleatorias()
 
 rodar_animacao_2d(kmeans, velocidade_animacao)
+kmeans.calcula_distancia_total()
+
+for centroide in range(kmeans.numero_centroides):
+    print(kmeans.centroides[centroide].bairros)
+
+print()
+print(kmeans.distancia_total)
