@@ -93,7 +93,14 @@ class Kmeans:
                 x3.append(self.banco.bairros[bairro]['coordenadas'][1])
                 y3.append(self.banco.bairros[bairro]['coordenadas'][0])
 
-        plt.plot(xcentroide[0], ycentroide[0], 'go', xcentroide[1], ycentroide[1], 'bo', xcentroide[2], ycentroide[2],
-                 'yo', xcentroide[3], ycentroide[3], 'ro', x0, y0, 'g^', x1, y1, 'b^', x2, y2, 'y^', x3, y3, 'r^')
+        plt.plot(xcentroide[0], ycentroide[0], 'go',
+                 xcentroide[1], ycentroide[1], 'bo', 
+                 xcentroide[2], ycentroide[2], 'yo', 
+                 xcentroide[3], ycentroide[3], 'ro', 
+                 x0, y0, 'g^', 
+                 x1, y1, 'b^', 
+                 x2, y2, 'y^', 
+                 x3, y3, 'r^')
+        
         plt.show()
 
